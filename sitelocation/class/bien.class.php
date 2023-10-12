@@ -18,7 +18,7 @@ class Bien {
     private $statu_bien;
     private $id_type_bien;
 
-    // Constructeur
+    // constructeur
     public function __construct($id, $nom, $rue, $cop, $vil, $sup, $nbCouchage, $nbPiece, $nbChambre, $descriptif, $statu, $idType) {
         $this->id_bien = $id;
         $this->nom_bien = $nom;
@@ -35,43 +35,43 @@ class Bien {
         $this->id_type_bien = $idType;
     }
 
-    // Récupérer un bien par ID
+    // récupérer l' ID du bien
     public static function getBienById($id) {
-        $con = new PDO('mysql:host=localhost;dbname=rentfr', 'root', ''); // À remplacer avec vos informations de connexion
+        $con = new PDO('mysql:host=localhost;dbname=rentfr', 'root', '');
         $sql = "SELECT * FROM biens WHERE id_bien = :id";
         $stmt = $con->prepare($sql);
         $stmt->execute([':id' => $id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    // Insérer un bien
+    // insérer un bien
     public static function insertBien($data) {
-        $con = new PDO('mysql:host=localhost;dbname=rentfr', 'root', ''); // À remplacer avec vos informations de connexion
+        $con = new PDO('mysql:host=localhost;dbname=rentfr', 'root', '');
         $sql = "INSERT INTO biens (nom_bien, rue_bien, cop_bien, vil_bien, sup_bien, nb_couchage, nb_piece, nb_chambre, descriptif, ref_bien, statu_bien, id_type_bien) VALUES (:nom, :rue, :cop, :vil, :sup, :nbCouchage, :nbPiece, :nbChambre, :descriptif, :ref_bien, :statu, :idType)";
         $stmt = $con->prepare($sql);
         $stmt->execute($data);
     }
 
-    // Mettre à jour un bien
+    // mettre à jour un bien
     public static function updateBien($id, $data) {
-        $con = new PDO('mysql:host=localhost;dbname=rentfr', 'root', ''); // À remplacer avec vos informations de connexion
+        $con = new PDO('mysql:host=localhost;dbname=rentfr', 'root', '');
         $data[':id'] = $id;
         $sql = "UPDATE biens SET nom_bien = :nom, rue_bien = :rue, cop_bien = :cop, vil_bien = :vil, sup_bien = :sup, nb_couchage = :nbCouchage, nb_piece = :nbPiece, nb_chambre = :nbChambre, descriptif = :descriptif, ref_bien = :ref_bien, statu_bien = :statu, id_type_bien = :idType WHERE id_bien = :id";
         $stmt = $con->prepare($sql);
         $stmt->execute($data);
     }
 
-    // Supprimer un bien par ID
+    // supprimer un bien avec l' ID
     public static function deleteBien($id) {
-        $con = new PDO('mysql:host=localhost;dbname=rentfr', 'root', ''); // À remplacer avec vos informations de connexion
+        $con = new PDO('mysql:host=localhost;dbname=rentfr', 'root', '');
         $sql = "DELETE FROM biens WHERE id_bien = :id";
         $stmt = $con->prepare($sql);
         $stmt->execute([':id' => $id]);
     }
 
-    // Récupérer tous les biens
+    // récupérer tous les biens
     public static function getAllBiens() {
-        $con = new PDO('mysql:host=localhost;dbname=rentfr', 'root', ''); // À remplacer avec vos informations de connexion
+        $con = new PDO('mysql:host=localhost;dbname=rentfr', 'root', '');
         $sql = "SELECT * FROM biens";
         $stmt = $con->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

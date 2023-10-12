@@ -1,6 +1,6 @@
 <?php
-require_once '../class/bien.class.php'; // Assurez-vous que le fichier Bien.php est correctement inclus.
-// Gestion de l'ajout de bien
+require_once '../class/bien.class.php';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['addBien'])) {
     $data = [
         ':nom' => $_POST['nom'],
@@ -19,9 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['addBien'])) {
     Bien::insertBien($data);
 }
 
-// Gestion de la mise à jour d'un bien
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['updateBien'])) {
-    $id = $_POST['id']; // Récupérez l'ID du bien à mettre à jour
+    $id = $_POST['id'];
     $data = [
         ':nom' => $_POST['nom'],
         ':rue' => $_POST['rue'],
@@ -35,18 +34,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['updateBien'])) {
         ':ref_bien' => $_POST['ref_bien'],
         ':statu' => $_POST['statu_bien'],
         ':idType' => $_POST['id_type_bien']
-            // Récupérez les autres données du formulaire de mise à jour de manière similaire
     ];
     Bien::updateBien($id, $data);
 }
 
-// Gestion de la suppression de bien
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteBien'])) {
-    $id = $_POST['delete_id']; // Récupérez l'ID du bien à supprimer
+    $id = $_POST['delete_id'];
     Bien::deleteBien($id);
 }
 
-// Récupérer tous les biens depuis la base de données
 $biens = Bien::getAllBiens();
 ?>
 
@@ -57,7 +53,6 @@ $biens = Bien::getAllBiens();
     </head>
     <body>
         <h1>Liste des Biens</h1>
-
         <table>
             <tr>
                 <th>ID</th>
@@ -73,7 +68,6 @@ $biens = Bien::getAllBiens();
                 <th>Référence</th>
                 <th>Statut</th>
                 <th>Type de Bien</th>
-                <!-- Ajoutez d'autres en-têtes de colonnes pour les autres attributs -->
                 <th>Actions</th>
             </tr>
             <?php foreach ($biens as $bien) : ?>
@@ -91,7 +85,6 @@ $biens = Bien::getAllBiens();
                     <td><?= $bien['ref_bien'] ?></td>
                     <td><?= $bien['statu_bien'] ?></td>
                     <td><?= $bien['id_type_bien'] ?></td>
-                    <!-- Affichez d'autres attributs ici -->
                     <td>
                         <form method="post">
                             <input type="hidden" name="delete_id" value="<?= $bien['id_bien'] ?>">
@@ -116,7 +109,6 @@ $biens = Bien::getAllBiens();
             <input type="text" name="ref_bien" placeholder="Référence" required>
             <input type="text" name="statu_bien" placeholder="Statut" required>
             <input type="text" name="id_type_bien" placeholder="ID du Type de Bien" required>
-            <!-- Ajoutez d'autres champs pour les autres attributs -->
             <button type="submit" name="addBien">Ajouter</button>
         </form>
 
@@ -135,7 +127,6 @@ $biens = Bien::getAllBiens();
             <input type="text" name="ref_bien" placeholder="Nouvelle Référence">
             <input type="text" name="statu_bien" placeholder="Nouveau Statut">
             <input type="text" name="id_type_bien" placeholder="Nouvel ID du Type de Bien">
-            <!-- Ajoutez d'autres champs pour les autres attributs à mettre à jour -->
             <button type="submit" name="updateBien">Mettre à jour</button>
         </form>
     </body>
