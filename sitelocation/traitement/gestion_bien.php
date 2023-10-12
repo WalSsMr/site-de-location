@@ -6,7 +6,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['addBien'])) {
         ':nom' => $_POST['nom'],
         ':rue' => $_POST['rue'],
         ':cop' => $_POST['cop'],
-            // Récupérez les autres données du formulaire de manière similaire
+        ':vil' => $_POST['vil'],
+        ':sup' => $_POST['sup'],
+        ':nbCouchage' => $_POST['nb_couchage'],
+        ':nbPiece' => $_POST['nb_piece'],
+        ':nbChambre' => $_POST['nb_chambre'],
+        ':descriptif' => $_POST['descriptif'],
+        ':ref_bien' => $_POST['ref_bien'],
+        ':statu' => $_POST['statu_bien'],
+        ':idType' => $_POST['id_type_bien']
     ];
     Bien::insertBien($data);
 }
@@ -18,6 +26,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['updateBien'])) {
         ':nom' => $_POST['nom'],
         ':rue' => $_POST['rue'],
         ':cop' => $_POST['cop'],
+        ':vil' => $_POST['vil'],
+        ':sup' => $_POST['sup'],
+        ':nbCouchage' => $_POST['nb_couchage'],
+        ':nbPiece' => $_POST['nb_piece'],
+        ':nbChambre' => $_POST['nb_chambre'],
+        ':descriptif' => $_POST['descriptif'],
+        ':ref_bien' => $_POST['ref_bien'],
+        ':statu' => $_POST['statu_bien'],
+        ':idType' => $_POST['id_type_bien']
             // Récupérez les autres données du formulaire de mise à jour de manière similaire
     ];
     Bien::updateBien($id, $data);
@@ -47,6 +64,15 @@ $biens = Bien::getAllBiens();
                 <th>Nom</th>
                 <th>Rue</th>
                 <th>Code Postal</th>
+                <th>Ville</th>
+                <th>Surface</th>
+                <th>Nombre de Couchages</th>
+                <th>Nombre de Pièces</th>
+                <th>Nombre de Chambres</th>
+                <th>Descriptif</th>
+                <th>Référence</th>
+                <th>Statut</th>
+                <th>Type de Bien</th>
                 <!-- Ajoutez d'autres en-têtes de colonnes pour les autres attributs -->
                 <th>Actions</th>
             </tr>
@@ -56,6 +82,15 @@ $biens = Bien::getAllBiens();
                     <td><?= $bien['nom_bien'] ?></td>
                     <td><?= $bien['rue_bien'] ?></td>
                     <td><?= $bien['cop_bien'] ?></td>
+                    <td><?= $bien['vil_bien'] ?></td>
+                    <td><?= $bien['sup_bien'] ?></td>
+                    <td><?= $bien['nb_couchage'] ?></td>
+                    <td><?= $bien['nb_piece'] ?></td>
+                    <td><?= $bien['nb_chambre'] ?></td>
+                    <td><?= $bien['descriptif'] ?></td>
+                    <td><?= $bien['ref_bien'] ?></td>
+                    <td><?= $bien['statu_bien'] ?></td>
+                    <td><?= $bien['id_type_bien'] ?></td>
                     <!-- Affichez d'autres attributs ici -->
                     <td>
                         <form method="post">
@@ -72,6 +107,15 @@ $biens = Bien::getAllBiens();
             <input type="text" name="nom" placeholder="Nom du Bien" required>
             <input type="text" name="rue" placeholder="Adresse" required>
             <input type="text" name="cop" placeholder="Code Postal" required>
+            <input type="text" name="vil" placeholder="Ville" required>
+            <input type="text" name="sup" placeholder="Surface" required>
+            <input type="text" name="nb_couchage" placeholder="Nombre de Couchages" required>
+            <input type="text" name="nb_piece" placeholder="Nombre de Pièces" required>
+            <input type="text" name="nb_chambre" placeholder="Nombre de Chambres" required>
+            <input type="text" name="descriptif" placeholder="Descriptif" required>
+            <input type="text" name="ref_bien" placeholder="Référence" required>
+            <input type="text" name="statu_bien" placeholder="Statut" required>
+            <input type="text" name="id_type_bien" placeholder="ID du Type de Bien" required>
             <!-- Ajoutez d'autres champs pour les autres attributs -->
             <button type="submit" name="addBien">Ajouter</button>
         </form>
@@ -82,6 +126,15 @@ $biens = Bien::getAllBiens();
             <input type="text" name="nom" placeholder="Nouveau Nom">
             <input type="text" name="rue" placeholder="Nouvelle Adresse">
             <input type="text" name="cop" placeholder="Nouveau Code Postal">
+            <input type="text" name="vil" placeholder="Nouvelle Ville">
+            <input type="text" name="sup" placeholder="Nouvelle Surface">
+            <input type="text" name="nb_couchage" placeholder="Nouveau Nombre de Couchages">
+            <input type="text" name="nb_piece" placeholder="Nouveau Nombre de Pièces">
+            <input type="text" name="nb_chambre" placeholder="Nouveau Nombre de Chambres">
+            <input type="text" name="descriptif" placeholder="Nouveau Descriptif">
+            <input type="text" name="ref_bien" placeholder="Nouvelle Référence">
+            <input type="text" name="statu_bien" placeholder="Nouveau Statut">
+            <input type="text" name="id_type_bien" placeholder="Nouvel ID du Type de Bien">
             <!-- Ajoutez d'autres champs pour les autres attributs à mettre à jour -->
             <button type="submit" name="updateBien">Mettre à jour</button>
         </form>

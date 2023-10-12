@@ -14,6 +14,7 @@ class Bien {
     private $nb_piece;
     private $nb_chambre;
     private $descriptif;
+    private $ref_bien;
     private $statu_bien;
     private $id_type_bien;
 
@@ -29,6 +30,7 @@ class Bien {
         $this->nb_piece = $nbPiece;
         $this->nb_chambre = $nbChambre;
         $this->descriptif = $descriptif;
+        $this->ref_bien = $ref_bien;
         $this->statu_bien = $statu;
         $this->id_type_bien = $idType;
     }
@@ -45,7 +47,7 @@ class Bien {
     // Insérer un bien
     public static function insertBien($data) {
         $con = new PDO('mysql:host=localhost;dbname=rentfr', 'root', ''); // À remplacer avec vos informations de connexion
-        $sql = "INSERT INTO biens (nom_bien, rue_bien, cop_bien, vil_bien, sup_bien, nb_couchage, nb_piece, nb_chambre, descriptif, statu_bien, id_type_bien) VALUES (:nom, :rue, :cop, :vil, :sup, :nbCouchage, :nbPiece, :nbChambre, :descriptif, :statu, :idType)";
+        $sql = "INSERT INTO biens (nom_bien, rue_bien, cop_bien, vil_bien, sup_bien, nb_couchage, nb_piece, nb_chambre, descriptif, ref_bien, statu_bien, id_type_bien) VALUES (:nom, :rue, :cop, :vil, :sup, :nbCouchage, :nbPiece, :nbChambre, :descriptif, :ref_bien, :statu, :idType)";
         $stmt = $con->prepare($sql);
         $stmt->execute($data);
     }
@@ -54,7 +56,7 @@ class Bien {
     public static function updateBien($id, $data) {
         $con = new PDO('mysql:host=localhost;dbname=rentfr', 'root', ''); // À remplacer avec vos informations de connexion
         $data[':id'] = $id;
-        $sql = "UPDATE biens SET nom_bien = :nom, rue_bien = :rue, cop_bien = :cop, vil_bien = :vil, sup_bien = :sup, nb_couchage = :nbCouchage, nb_piece = :nbPiece, nb_chambre = :nbChambre, descriptif = :descriptif, statu_bien = :statu, id_type_bien = :idType WHERE id_bien = :id";
+        $sql = "UPDATE biens SET nom_bien = :nom, rue_bien = :rue, cop_bien = :cop, vil_bien = :vil, sup_bien = :sup, nb_couchage = :nbCouchage, nb_piece = :nbPiece, nb_chambre = :nbChambre, descriptif = :descriptif, ref_bien = :ref_bien, statu_bien = :statu, id_type_bien = :idType WHERE id_bien = :id";
         $stmt = $con->prepare($sql);
         $stmt->execute($data);
     }
